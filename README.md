@@ -68,7 +68,7 @@ CSC guys have done quite a lot around this after Unicon.
 
 - Juho Erkkilä (awesome devOps automation pipeline guru in Weare)
 
-Juho has done lot of work in improving the [Dockerfile](https://github.com/Olevi-id/shibboleth-idp-dockerized/blob/master/latest/Dockerfile)
+Juho has done lot of work in improving the [Dockerfile](https://github.com/Olevi-id/shibboleth-idp-dockerized/blob/master/Dockerfile)
 
 - Kari Laalo (you know how to reach me)
 
