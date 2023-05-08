@@ -10,7 +10,7 @@ Refer to [Dockerfile](https://github.com/Olevi-id/shibboleth-idp-dockerized/blob
     <img src="https://misc.karilaalo.fi/pics/icons8-git.svg" />
 </a>
 
-Currently the purpose of this repository is to provide an image in [Dockerhub](https://hub.docker.com/r/klaalo/shibboleth-idp/tags) that is somewhat automatically updated using [Travis](https://travis-ci.org). I use it to develop Shibboleth IdP based services further.
+Currently the purpose of this repository is to provide an image in [Dockerhub](https://hub.docker.com/r/klaalo/shibboleth-idp/tags) that is somewhat automatically updated using [GitHub Actions](https://github.com/features/actions). I use it to develop Shibboleth IdP based services further.
 
 You may find some other purpose. If you do, please [tell us](https://www.weare.fi/en/contact-us/) about it in some imaginative way!
 
