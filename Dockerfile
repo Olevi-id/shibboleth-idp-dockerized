@@ -1,8 +1,8 @@
-FROM jetty:9-jdk11-slim as base
+FROM jetty:10-jdk17-amazoncorretto as base
 
-ARG idp_version=4.2.1
-ARG idp_hash=fa5e46d160f6b1bc50326c1a31627a05b5d0847b8f620d7f4c0251999b806474
-ARG idp_oidcext_version=3.2.1
+ARG idp_version=4.3.0
+ARG idp_hash=ef0b01af99c1364c2b6f88b06a697ed335a56e47528f9aa9dff123a7453325fa
+ARG idp_oidcext_version=3.3.0
 ARG idp_oidc_common_version=2.1.0
 ARG slf4j_version=1.7.29
 ARG slf4j_hash=47b624903c712f9118330ad2fb91d0780f7f666c3f22919d0fc14522c5cad9ea
@@ -19,23 +19,23 @@ ENV IDP_SRC=/opt/shibboleth-identity-provider-$idp_version \
     IDP_HOME=/opt/shibboleth-idp \
     IDP_HOST_NAME=idp.example.org \
     IDP_KEYSTORE_PASSWORD=idpkstorepwd \
-    IDP_SEALER_PASSWORD=idpsealerpwd \
-    JETTY_KEYSTORE_PASSWORD=storepwd \
-    JETTY_KEYSTORE_PATH=etc/keystore
+    IDP_SEALER_PASSWORD=idpsealerpwd
 
 # Switch to root during installations and configurations
 USER root
-RUN apt update
-RUN apt install -y curl gnupg
+RUN yum install -y curl gnupg
 
 # JETTY Configure
 RUN mkdir -p $JETTY_BASE/modules $JETTY_BASE/lib/ext $JETTY_BASE/lib/logging $JETTY_BASE/resources \
-    && java -jar $JETTY_HOME/start.jar --create-startd --add-to-start=http2,http2c,annotations,rewrite --approve-all-licenses
+    && java -jar $JETTY_HOME/start.jar --create-startd \
+    --add-modules=http2c,annotations,rewrite,http-forwarded \
+    --approve-all-licenses
 
 # Shibboleth IdP - Download, verify hash and install
 RUN curl -sO https://shibboleth.net/downloads/identity-provider/$idp_version/shibboleth-identity-provider-$idp_version.tar.gz \
     && echo "$idp_hash shibboleth-identity-provider-$idp_version.tar.gz" | sha256sum -c - \
-    && tar -zxvf shibboleth-identity-provider-$idp_version.tar.gz -C /opt \
+    && gzip -d shibboleth-identity-provider-$idp_version.tar.gz \
+    && tar -xvf shibboleth-identity-provider-$idp_version.tar -C /opt \
     && $IDP_SRC/bin/install.sh \
     -Didp.scope=$IDP_SCOPE \
     -Didp.target.dir=$IDP_HOME \
@@ -46,7 +46,7 @@ RUN curl -sO https://shibboleth.net/downloads/identity-provider/$idp_version/shi
     -Didp.sealer.password=$IDP_SEALER_PASSWORD \
     -Didp.keystore.password=$IDP_KEYSTORE_PASSWORD \
     -Didp.entityID=$IDP_PUBLIC_URL \
-    && rm shibboleth-identity-provider-$idp_version.tar.gz \
+    && rm shibboleth-identity-provider-$idp_version.tar \
     && rm -rf /opt/shibboleth-identity-provider-$idp_version
 
 # slf4j - Download, verify and install
@@ -72,11 +72,12 @@ RUN curl -sO https://repo1.maven.org/maven2/ch/qos/logback/logback-access/$logba
 # Install plugins
 # See: https://stackoverflow.com/questions/34212230/using-bouncycastle-with-gnupg-2-1s-pubring-kbx-file
 RUN curl -s https://shibboleth.net/downloads/PGP_KEYS | gpg --import && \ 
-    gpg --export > /root/.gnupg/pubring.gpg && \
     ${IDP_HOME}/bin/plugin.sh -i https://shibboleth.net/downloads/identity-provider/plugins/oidc-common/$idp_oidc_common_version/oidc-common-dist-$idp_oidc_common_version.tar.gz --truststore /root/.gnupg/pubring.gpg --noPrompt && \
-    ${IDP_HOME}/bin/plugin.sh -i https://shibboleth.net/downloads/identity-provider/plugins/oidc-op/$idp_oidcext_version/idp-plugin-oidc-op-distribution-$idp_oidcext_version.tar.gz --truststore /root/.gnupg/pubring.gpg --noPrompt
+    ${IDP_HOME}/bin/plugin.sh -i https://shibboleth.net/downloads/identity-provider/plugins/oidc-op/$idp_oidcext_version/idp-plugin-oidc-op-distribution-$idp_oidcext_version.tar.gz --truststore /root/.gnupg/pubring.gpg --noPrompt && \
+    ${IDP_HOME}/bin/plugin.sh -I net.shibboleth.idp.plugin.nashorn --truststore /root/.gnupg/pubring.gpg --noPrompt
 
-EXPOSE 8080 8443
+EXPOSE 8080
+EXPOSE 8443
 
 COPY jetty-base/ $JETTY_BASE/
 
@@ -87,6 +88,4 @@ HEALTHCHECK --interval=1m --timeout=30s \
 CMD \
 "$IDP_HOME"/bin/build.sh -Didp.target.dir="$IDP_HOME" && \
 "$JAVA_HOME"/bin/java -jar "$JETTY_HOME"/start.jar \
-    jetty.home="$JETTY_HOME" jetty.base="$JETTY_BASE" \
-    -Djetty.sslContext.keyStorePassword="$JETTY_KEYSTORE_PASSWORD" \
-    -Djetty.sslContext.keyStorePath="$JETTY_KEYSTORE_PATH"
+    jetty.home="$JETTY_HOME" jetty.base="$JETTY_BASE"

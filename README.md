@@ -16,8 +16,7 @@ You may find some other purpose. If you do, please [tell us](https://www.weare.f
 
 ## Supported tags
 
-* [4.2.1](https://github.com/klaalo/shibboleth-idp-dockerized/blob/master/latest/Dockerfile)
-* [4.2.1-jetty-9-jdk11](https://github.com/klaalo/shibboleth-idp-dockerized/blob/master/jetty9-jdk11/Dockerfile)
+* [4.2.1](https://github.com/klaalo/shibboleth-idp-dockerized/blob/master/Dockerfile)
 
 For additional older images not yet pruned, please see [Dockerhub tag listing](https://hub.docker.com/r/klaalo/shibboleth-idp/tags).
 
@@ -50,16 +49,6 @@ Few other references for your convenience:
 * [CISA Essentials Starter Kit](https://www.cisa.gov/sites/default/files/publications/Cyber%20Essentials%20Starter%20Kit_03.12.2021_508_0.pdf)
 * [NIST 80-53r5](https://csrc.nist.gov/CSRC/media/Projects/risk-management/800-53%20Downloads/800-53r5/SP_800-53_v5_1-derived-OSCAL.pdf)
 * [VAHTI 1/2013 SNT-011](https://www.suomidigi.fi/sites/default/files/2020-06/Vahti_ohje_1_2013_pdf_0.pdf)
-
-## Two versions available
-
-Build script makes two image versions available. There is currently default `Dockerfile` that uses Jetty v10 in Amazon Corretto jdk17 from [official Jetty Docker image](https://github.com/eclipse/jetty.docker/blob/c4346b6881f54541a36aeddaf77c71004cc0d32a/amazoncorretto/10.0/jdk17/Dockerfile). In addition the old image version is available that uses Jetty v9 in jdk11 also from [official Jetty Docker image](https://github.com/eclipse/jetty.docker/blob/c4346b6881f54541a36aeddaf77c71004cc0d32a/openjdk/9.4/jdk11-slim/Dockerfile).
-
-See more info about System Requirements in [Shibboleth Wiki](https://shibboleth.atlassian.net/wiki/spaces/IDP4/pages/1265631833/SystemRequirements)
-
-### Nashorn in new Java versions
-
-Make note that Nashorn engine was removed starting from Java 15. As it is quite essential part in Shibboleth in many attribute-reslover implementations, it was decided to be added manually in this image. There is special task related to this in the [Dockerfile](https://github.com/klaalo/shibboleth-idp-dockerized/blob/master/latest/Dockerfile#L78). We are very interested in hearing your comments and receiving your pull requests regarding this decision. Read more in [this LinkedIn article](https://www.linkedin.com/pulse/nashorn-removed-kari-laalo/).
 
 ### TLS not included
 
