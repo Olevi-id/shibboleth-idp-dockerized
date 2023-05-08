@@ -1,12 +1,12 @@
-[![Build Status](https://travis-ci.com/klaalo/shibboleth-idp-dockerized.svg?branch=master)](https://travis-ci.com/klaalo/shibboleth-idp-dockerized)
+[![Build Status](https://github.com/Olevi-id/shibboleth-idp-dockerized/actions/workflows/dockerhub.yml/badge.svg)
 
 ## Overview
 
 This is heavy handedly slimmed down image from Shibboleth Identity Provider software previously built based on [CSC fork](https://github.com/CSCfi/shibboleth-idp-dockerized) of original [Unicon image](https://github.com/Unicon/shibboleth-idp-dockerized) which has not been updated since.
 
-Refer to [Dockerfile](https://github.com/klaalo/shibboleth-idp-dockerized/blob/master/latest/Dockerfile) for details of current version. We do not promise active maintenance unless otherwise specifically agreed. If you find images lagging behind, please do update: 
+Refer to [Dockerfile](https://github.com/Olevi-id/shibboleth-idp-dockerized/blob/master/latest/Dockerfile) for details of current version. We do not promise active maintenance unless otherwise specifically agreed. If you find images lagging behind, please do update: 
 
-<a href="https://github.com/klaalo/shibboleth-idp-dockerized/fork">
+<a href="https://github.com/Olevi-id/shibboleth-idp-dockerized/fork">
     <img src="https://misc.karilaalo.fi/pics/icons8-git.svg" />
 </a>
 
@@ -16,7 +16,7 @@ You may find some other purpose. If you do, please [tell us](https://www.weare.f
 
 ## Supported tags
 
-* [4.2.1](https://github.com/klaalo/shibboleth-idp-dockerized/blob/master/Dockerfile)
+* [4.2.1](https://github.com/Olevi-id/shibboleth-idp-dockerized/blob/master/Dockerfile)
 
 For additional older images not yet pruned, please see [Dockerhub tag listing](https://hub.docker.com/r/klaalo/shibboleth-idp/tags).
 
@@ -70,7 +70,7 @@ CSC guys have done quite a lot around this after Unicon.
 
 - Juho Erkkilä (awesome devOps automation pipeline guru in Weare)
 
-Juho has done lot of work in improving the [Dockerfile](https://github.com/klaalo/shibboleth-idp-dockerized/blob/master/latest/Dockerfile)
+Juho has done lot of work in improving the [Dockerfile](https://github.com/Olevi-id/shibboleth-idp-dockerized/blob/master/latest/Dockerfile)
 
 - Kari Laalo (you know how to reach me)
 
@@ -83,4 +83,4 @@ I just try to glue things together somehow
 
 ## LICENSE
 
-This has come quite far from original Unicon implementation, so I dared to alter this section. [See LICENSE file](https://github.com/klaalo/shibboleth-idp-dockerized/blob/master/LICENSE) for further details.
+This has come quite far from original Unicon implementation, so I dared to alter this section. [See LICENSE file](https://github.com/Olevi-id/shibboleth-idp-dockerized/blob/master/LICENSE) for further details.
