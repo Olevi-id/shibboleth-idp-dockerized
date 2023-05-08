@@ -76,7 +76,7 @@ I just try to glue things together somehow
 
 ### Credits
 
-* Social preview image in Github [Photo by Philipp Katzenberger in Unsplash](https://unsplash.com/ko/@fantasyflip?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)>  
+* Social preview image in Github [Photo by Philipp Katzenberger in Unsplash](https://unsplash.com/ko/@fantasyflip?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 * <a target="_blank" href="https://icons8.com/icon/16335/git">Git</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>  
 
 ## LICENSE
