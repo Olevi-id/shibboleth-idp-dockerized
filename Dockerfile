@@ -1,4 +1,4 @@
-FROM jetty:10-jdk17-amazoncorretto as base
+FROM jetty:10-jdk17-amazoncorretto AS base
 
 ARG idp_version=4.3.0
 ARG idp_hash=ef0b01af99c1364c2b6f88b06a697ed335a56e47528f9aa9dff123a7453325fa
