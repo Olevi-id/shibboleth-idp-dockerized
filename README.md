@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/Olevi-id/shibboleth-idp-dockerized/actions/workflows/dockerhub.yml/badge.svg)
+![Build Status](https://github.com/Olevi-id/shibboleth-idp-dockerized/actions/workflows/dockerhub.yml/badge.svg)
 
 ## Overview
 
