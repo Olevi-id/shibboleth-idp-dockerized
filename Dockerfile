@@ -77,7 +77,6 @@ RUN curl -s https://shibboleth.net/downloads/PGP_KEYS | gpg --import && \
     ${IDP_HOME}/bin/plugin.sh -I net.shibboleth.idp.plugin.nashorn --truststore /root/.gnupg/pubring.gpg --noPrompt
 
 EXPOSE 8080
-EXPOSE 8443
 
 COPY jetty-base/ $JETTY_BASE/
 
