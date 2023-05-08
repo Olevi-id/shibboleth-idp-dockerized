@@ -52,9 +52,7 @@ Few other references for your convenience:
 
 ### TLS not included
 
-Also, in Jetty 10 image version, TLS support was removed in Jetty. It is assumed that the container is not exposed in naked to the Internet, but instead the service is being run behind a load balancer offloading the TLS. To this end, `http2` module was removed in the builder script and respectively `http-forwarded` was added to facilitate necessities running behind a HTTP proxy.
-
-If naked TLS should be necessary, one can still use the old Jetty 9 version.
+TLS support was removed. It is assumed that the container is not exposed in naked to the Internet, but instead the service is being run behind a load balancer offloading the TLS. To this end, `http2` module was removed in the builder script and respectively `http-forwarded` was added to facilitate necessities running behind a HTTP proxy.
 
 ## Authors/Contributors
 
