@@ -16,7 +16,8 @@ You may find some other purpose. If you do, please [tell us](https://www.weare.f
 
 ## Supported tags
 
-* [4.2.1](https://github.com/Olevi-id/shibboleth-idp-dockerized/blob/master/Dockerfile)
+* 4.3.1
+* 4.3.0
 
 For additional older images not yet pruned, please see [Dockerhub tag listing](https://hub.docker.com/r/klaalo/shibboleth-idp/tags).
 

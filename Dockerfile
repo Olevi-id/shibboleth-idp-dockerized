@@ -1,15 +1,15 @@
 FROM jetty:10-jdk17-amazoncorretto AS base
 
-ARG idp_version=4.3.0
-ARG idp_hash=ef0b01af99c1364c2b6f88b06a697ed335a56e47528f9aa9dff123a7453325fa
+ARG idp_version=4.3.1
+ARG idp_hash=04d08d324a5a5f016ca69b96dbab58abbb5b3e0045455cc15cf0d33ffd6742d5
 ARG idp_oidcext_version=3.3.0
 ARG idp_oidc_common_version=2.1.0
-ARG slf4j_version=1.7.29
-ARG slf4j_hash=47b624903c712f9118330ad2fb91d0780f7f666c3f22919d0fc14522c5cad9ea
-ARG logback_version=1.2.9
-ARG logback_classic_hash=ad745cc243805800d1ebbf5b7deba03b37c95885e6bce71335a73f7d6d0f14ee
-ARG logback_core_hash=4a9ef7ed809b1fbc6992bf87d404087c247e7a9766e25bb84377b58ed5c9eb58
-ARG logback_access_hash=4db03561790664b823181cf8db78260c675464741372459ecba4fadf6d5538d2
+ARG slf4j_version=2.0.7
+ARG slf4j_hash=5d6298b93a1905c32cda6478808ac14c2d4a47e91535e53c41f7feeb85d946f4
+ARG logback_version=1.4.7
+ARG logback_classic_hash=138d0fb6ad50c8d52ceb636e1deca3ec221f0864e018e8e4cb48f9e2cacc5096
+ARG logback_core_hash=df743fa8c4e166a2a6b6268aa53697bca95aa674bbfa9cce086f98b166b3c22f
+ARG logback_access_hash=6b2e3e65510586b125c5948c5896997c8594094409853322abbbde89c4898def
 
 
 ## IDP env values
