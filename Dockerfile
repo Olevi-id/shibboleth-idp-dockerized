@@ -2,8 +2,9 @@ FROM jetty:10-jdk17-amazoncorretto AS base
 
 ARG idp_version=4.3.1
 ARG idp_hash=04d08d324a5a5f016ca69b96dbab58abbb5b3e0045455cc15cf0d33ffd6742d5
-ARG idp_oidcext_version=3.3.0
-ARG idp_oidc_common_version=2.1.0
+ARG idp_oidc_config_version=1.0.1
+ARG idp_oidcext_version=3.4.0
+ARG idp_oidc_common_version=2.2.0
 ARG slf4j_version=2.0.7
 ARG slf4j_hash=5d6298b93a1905c32cda6478808ac14c2d4a47e91535e53c41f7feeb85d946f4
 ARG logback_version=1.4.7
@@ -73,6 +74,7 @@ RUN curl -sO https://repo1.maven.org/maven2/ch/qos/logback/logback-access/$logba
 # See: https://stackoverflow.com/questions/34212230/using-bouncycastle-with-gnupg-2-1s-pubring-kbx-file
 RUN curl -s https://shibboleth.net/downloads/PGP_KEYS | gpg --import && \ 
     ${IDP_HOME}/bin/plugin.sh -i https://shibboleth.net/downloads/identity-provider/plugins/oidc-common/$idp_oidc_common_version/oidc-common-dist-$idp_oidc_common_version.tar.gz --truststore /root/.gnupg/pubring.gpg --noPrompt && \
+    ${IDP_HOME}/bin/plugin.sh -i https://shibboleth.net/downloads/identity-provider/plugins/oidc-config/$idp_oidc_config_version/idp-plugin-oidc-config-dist-$idp_oidc_config_version.tar.gz --truststore /root/.gnupg/pubring.gpg --noPrompt && \
     ${IDP_HOME}/bin/plugin.sh -i https://shibboleth.net/downloads/identity-provider/plugins/oidc-op/$idp_oidcext_version/idp-plugin-oidc-op-distribution-$idp_oidcext_version.tar.gz --truststore /root/.gnupg/pubring.gpg --noPrompt && \
     ${IDP_HOME}/bin/plugin.sh -I net.shibboleth.idp.plugin.nashorn --truststore /root/.gnupg/pubring.gpg --noPrompt
 

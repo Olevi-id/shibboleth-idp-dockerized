@@ -16,6 +16,9 @@ You may find some other purpose. If you do, please [tell us](https://www.weare.f
 
 ## Supported tags
 
+* 4.3.1.1
+    * OIDC Common: 2.2.0
+    * OIDC OP: 3.4.0
 * 4.3.1
 * 4.3.0
 
