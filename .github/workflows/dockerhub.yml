@@ -28,7 +28,7 @@ jobs:
         with:
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: klaalo/shibboleth-idp:5.0.0
+          tags: klaalo/shibboleth-idp:latest
   dockerUpdateDescription:
     runs-on: ubuntu-latest
     steps:
