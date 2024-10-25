@@ -2,9 +2,9 @@ FROM jetty:11-jdk17-amazoncorretto AS base
 
 ARG idp_version=5.1.3
 ARG idp_hash=cc72f0b15fda49b43bdd38cef3bdc62cbe01684b59c3d024b5de1ffdba42206e
-ARG idp_oidc_config_version=2.1.0
-ARG idp_oidcext_version=4.1.0
-ARG idp_oidc_common_version=3.1.1
+ARG idp_oidc_config_version=2.2.0
+ARG idp_oidcext_version=4.2.0
+ARG idp_oidc_common_version=3.2.0
 ARG slf4j_version=2.0.7
 ARG slf4j_hash=5d6298b93a1905c32cda6478808ac14c2d4a47e91535e53c41f7feeb85d946f4
 ARG logback_version=1.5.3
