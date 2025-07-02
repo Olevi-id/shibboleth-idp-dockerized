@@ -1,4 +1,4 @@
-FROM jetty:11-jdk17-amazoncorretto AS base
+FROM jetty:12-jdk21-amazoncorretto AS base
 
 ARG idp_version=5.1.4
 ARG idp_hash=824e9e151cf003e05e3f8855ec21cacba24de070454ef3da2da813fe13cc96eb
@@ -24,9 +24,11 @@ RUN yum install -y curl gnupg
 
 # JETTY Configure
 RUN mkdir -p $JETTY_BASE/modules $JETTY_BASE/lib/ext $JETTY_BASE/lib/logging $JETTY_BASE/resources \
-    && java -jar $JETTY_HOME/start.jar --create-startd \
-    --add-modules=http2c,annotations,rewrite,http-forwarded \
+    && java -jar $JETTY_HOME/start.jar \
+    --create-startd \
+    --add-modules=http2c,rewrite,forwarded,logging-logback \
     --approve-all-licenses
+
 
 # Shibboleth IdP - Download, verify hash and install
 RUN curl -sO https://shibboleth.net/downloads/identity-provider/$idp_version/shibboleth-identity-provider-$idp_version.tar.gz \
@@ -37,26 +39,6 @@ COPY idp-install.properties /tmp/
 RUN $IDP_SRC/bin/install.sh --propertyFile /tmp/idp-install.properties
 RUN rm shibboleth-identity-provider-$idp_version.tar \
     && rm -rf /opt/shibboleth-identity-provider-$idp_version
-
-# slf4j - Download, verify and install
-RUN curl -sO https://repo1.maven.org/maven2/org/slf4j/slf4j-api/${slf4j_version}/slf4j-api-${slf4j_version}.jar \
-    && echo "$slf4j_hash  slf4j-api-${slf4j_version}.jar" | sha256sum -c - \
-    && mv "slf4j-api-${slf4j_version}.jar" "${JETTY_BASE}/lib/logging/"
-
-# logback_classic - Download verify and install
-RUN curl -sO https://repo1.maven.org/maven2/ch/qos/logback/logback-classic/$logback_version/logback-classic-$logback_version.jar \
-    && echo "$logback_classic_hash  logback-classic-$logback_version.jar" | sha256sum -c - \
-    && mv logback-classic-${logback_version}.jar $JETTY_BASE/lib/logging/
-
-# logback-core - Download, verify and install
-RUN curl -sO https://repo1.maven.org/maven2/ch/qos/logback/logback-core/$logback_version/logback-core-$logback_version.jar \
-    && echo "$logback_core_hash  logback-core-$logback_version.jar" | sha256sum -c - \
-    && mv "logback-core-${logback_version}.jar" $JETTY_BASE/lib/logging/
-
-# logback-access - Download, verify and install
-RUN curl -sO https://repo1.maven.org/maven2/ch/qos/logback/logback-access/$logback_version/logback-access-$logback_version.jar \
-    && echo "$logback_access_hash  logback-access-$logback_version.jar" | sha256sum -c - \
-    && mv logback-access-$logback_version.jar ${JETTY_BASE}/lib/logging/
 
 # Install plugins
 # See: https://stackoverflow.com/questions/34212230/using-bouncycastle-with-gnupg-2-1s-pubring-kbx-file

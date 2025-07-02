@@ -28,7 +28,7 @@ jobs:
         with:
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: klaalo/shibboleth-idp:5.1.4
+          tags: klaalo/shibboleth-idp:jdk21-jetty12-5.1.4
   dockerUpdateDescription:
     runs-on: ubuntu-latest
     steps:
