@@ -1,7 +1,7 @@
 FROM jetty:12-jdk21-amazoncorretto AS base
 
-ARG idp_version=5.1.4
-ARG idp_hash=824e9e151cf003e05e3f8855ec21cacba24de070454ef3da2da813fe13cc96eb
+ARG idp_version=5.1.5
+ARG idp_hash=618b8cb5c3bc4921822f4e86b9cfdea538c50b925d5d3efd050152272559c150
 ARG idp_oidc_config_version=2.2.0
 ARG idp_oidcext_version=4.2.1
 ARG idp_oidc_common_version=3.2.0
